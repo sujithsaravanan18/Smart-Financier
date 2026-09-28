@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Financier - Financial Management System</title>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <div class="brand-title">Smart Financier</div>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item active" data-tab="dashboard">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="nav-item" data-tab="customers">
+          <i class="fa-solid fa-users"></i>
+          <span>Customers</span>
+        </li>
+        <li class="nav-item" data-tab="loans">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+          <span>Active Loans</span>
+        </li>
+        <li class="nav-item" data-tab="reminders">
+          <i class="fa-solid fa-bell"></i>
+          <span>Automated Reminders</span>
+        </li>
+      </ul>
+    </div>
+    <div class="user-profile">
+      <div class="avatar">SF</div>
+      <div class="user-info">
+        <span class="user-name">Small Credit Co.</span>
+        <span class="user-role">Financier Admin</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- Top Header -->
+    <header class="top-bar">
+      <div>
+        <h1 class="page-title" id="page-title">Financial Dashboard</h1>
+        <p class="page-subtitle">Smart credit tracking, automated payment reminders & analytics</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-secondary" id="btn-trigger-reminders">
+          <i class="fa-solid fa-paper-plane"></i> Run Daily Reminders
+        </button>
+        <button class="btn btn-primary" id="btn-open-customer-modal">
+          <i class="fa-solid fa-user-plus"></i> Add Customer
+        </button>
+        <button class="btn btn-emerald" id="btn-open-loan-modal">
+          <i class="fa-solid fa-plus"></i> Issue New Loan
+        </button>
+      </div>
+    </header>
+
+    <!-- Metrics Cards Row -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Total Outstanding Loans</div>
+          <div class="metric-value" id="metric-outstanding">$45,800.00</div>
+          <div class="metric-change positive"><i class="fa-solid fa-arrow-up"></i> +12% this month</div>
+        </div>
+        <div class="metric-icon blue"><i class="fa-solid fa-wallet"></i></div>
+      </div>
+
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Total Active Customers</div>
+          <div class="metric-value" id="metric-customers">28</div>
+          <div class="metric-change positive"><i class="fa-solid fa-user-check"></i> 100% Verified</div>
+        </div>
+        <div class="metric-icon cyan"><i class="fa-solid fa-users"></i></div>
+      </div>
+
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Collections This Month</div>
+          <div class="metric-value" id="metric-collected">$12,450.00</div>
+          <div class="metric-change positive"><i class="fa-solid fa-circle-check"></i> 94% On-time Rate</div>
+        </div>
+        <div class="metric-icon emerald"><i class="fa-solid fa-vault"></i></div>
+      </div>
+
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Reminders Due Tomorrow</div>
+          <div class="metric-value" id="metric-reminders-due">4</div>
+          <div class="metric-change warning"><i class="fa-solid fa-clock"></i> Scheduled 1 Day Prior</div>
+        </div>
+        <div class="metric-icon amber"><i class="fa-solid fa-bell"></i></div>
+      </div>
+    </section>
+
+    <!-- Analytics Charts & Reminders Preview -->
+    <section class="dashboard-grid">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Financial Cash Flow Analytics</h2>
+          <span style="font-size:12px; color:var(--text-muted);">Disbursements vs Collections</span>
+        </div>
+        <canvas id="cashflowChart" height="220"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Automated Reminders Feed</h2>
+          <span class="status-badge status-active">SMS Active</span>
+        </div>
+        <div class="reminders-list" id="reminders-feed">
+          <div class="reminder-item">
+            <i class="fa-solid fa-comment-sms" style="color:var(--accent-amber); font-size:18px;"></i>
+            <div class="reminder-content">
+              <div class="reminder-title">Reminder Sent to Alice Smith</div>
+              <div class="reminder-time">Due Tomorrow: $550.00 • Phone: +1234567890</div>
+            </div>
+          </div>
+          <div class="reminder-item">
+            <i class="fa-solid fa-comment-sms" style="color:var(--accent-amber); font-size:18px;"></i>
+            <div class="reminder-content">
+              <div class="reminder-title">Reminder Sent to Bob Jones</div>
+              <div class="reminder-time">Due Tomorrow: $1,200.00 • Phone: +1987654321</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Loans Table -->
+    <section class="card">
+      <div class="card-header">
+        <h2 class="card-title">Customer Credit & Loan Records</h2>
+        <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px;" id="refresh-table-btn">
+          <i class="fa-solid fa-rotate"></i> Refresh Data
+        </button>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Principal</th>
+              <th>Total Due</th>
+              <th>Remaining Balance</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="loans-table-body">
+            <!-- Dynamically Populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Add Customer -->
+  <div class="modal-overlay" id="modal-customer">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Customer</h3>
+        <button class="modal-close" class="close-modal">&times;</button>
+      </div>
+      <form id="form-add-customer">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="cust-name" placeholder="e.g. John Doe" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number (with Country Code)</label>
+          <input type="text" class="form-control" id="cust-phone" placeholder="e.g. +1234567890" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address (Optional)</label>
+          <input type="email" class="form-control" id="cust-email" placeholder="e.g. john@example.com">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Save Customer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Issue Loan -->
+  <div class="modal-overlay" id="modal-loan">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Issue New Loan</h3>
+        <button class="modal-close" class="close-modal">&times;</button>
+      </div>
+      <form id="form-issue-loan">
+        <div class="form-group">
+          <label class="form-label">Select Customer</label>
+          <select class="form-control" id="loan-cust-select" required>
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Principal Amount ($)</label>
+          <input type="number" step="0.01" class="form-control" id="loan-principal" placeholder="1000.00" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Amount Due ($ with interest/fees)</label>
+          <input type="number" step="0.01" class="form-control" id="loan-total-due" placeholder="1100.00" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Repayment Due Date</label>
+          <input type="date" class="form-control" id="loan-due-date" required>
+        </div>
+        <button type="submit" class="btn btn-emerald" style="width:100%; justify-content:center;">Issue Loan</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Record Payment -->
+  <div class="modal-overlay" id="modal-payment">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Loan Payment</h3>
+        <button class="modal-close" class="close-modal">&times;</button>
+      </div>
+      <form id="form-record-payment">
+        <input type="hidden" id="pay-loan-id">
+        <div class="form-group">
+          <label class="form-label">Customer Name</label>
+          <input type="text" class="form-control" id="pay-customer-name" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Remaining Balance ($)</label>
+          <input type="text" class="form-control" id="pay-current-balance" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Amount Paid Today ($)</label>
+          <input type="number" step="0.01" class="form-control" id="pay-amount" placeholder="Enter amount" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Notes / Ref</label>
+          <input type="text" class="form-control" id="pay-notes" placeholder="e.g. Cash, Bank Transfer #123">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Record Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

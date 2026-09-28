@@ -1,0 +1,87 @@
+{% extends "admin/layout.html" %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ _('Admin Dashboard') }}</h2>
+    <a href="{{ url_for('dashboard.export_csv') }}" class="btn btn-primary shadow-sm fade-in">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download me-2" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </svg>{{ _('Export Report (CSV)') }}
+    </a>
+</div>
+
+<div class="row mb-4 fade-in" style="animation-delay: 0.1s;">
+    <div class="col-md-4 mb-3">
+        <div class="stat-widget glass-panel">
+            <span class="stat-label">{{ _('Total Users') }}</span>
+            <span class="stat-value">{{ stats.users }}</span>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="stat-widget glass-panel">
+            <span class="stat-label">{{ _('Total Loans') }}</span>
+            <span class="stat-value">{{ stats.loans }}</span>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="stat-widget glass-panel">
+            <span class="stat-label">{{ _('Total Payments') }}</span>
+            <span class="stat-value">{{ stats.payments }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="row fade-in" style="animation-delay: 0.2s;">
+    <div class="col-md-4">
+        <div class="glass-panel p-4 mb-4 h-100">
+            <h5 class="mb-3 fw-bold">{{ _('User Roles') }}</h5>
+            <canvas id="roleChart"></canvas>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="glass-panel p-4 mb-4 h-100">
+            <h5 class="mb-3 fw-bold">{{ _('Monthly Payment Activity') }}</h5>
+            <canvas id="paymentActivityChart" height="150"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var roleCtx = document.getElementById('roleChart').getContext('2d');
+    new Chart(roleCtx, {
+        type: 'pie',
+        data: {
+            labels: {{ stats.role_labels | tojson }},
+            datasets: [{
+                data: {{ stats.role_counts | tojson }},
+                backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545']
+            }]
+        }
+    });
+    
+    var paymentCtx = document.getElementById('paymentActivityChart').getContext('2d');
+    new Chart(paymentCtx, {
+        type: 'line',
+        data: {
+            labels: {{ stats.month_labels | tojson }},
+            datasets: [{
+                label: '{{ _("Payment Volume ($)") }}',
+                data: {{ stats.monthly_data | tojson }},
+                borderColor: '#0dcaf0',
+                backgroundColor: 'rgba(13, 202, 240, 0.2)',
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

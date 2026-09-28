@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 text-danger">{{ _('Oops! Something went wrong.') }}</h1>
+        <p class="lead">{{ _('An unexpected error has occurred.') }}</p>
+        <p class="text-muted">{{ _('The error has been logged and our team has been notified.') }}</p>
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary mt-3">{{ _('Return to Home') }}</a>
+    </div>
+</div>
+{% endblock %}

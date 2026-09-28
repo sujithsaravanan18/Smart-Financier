@@ -1,0 +1,734 @@
+# English translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-07-27 22:13+0530\n"
+"PO-Revision-Date: 2026-07-27 22:14+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/admin/routes.py:39 app/templates/admin/dashboard.html:4
+#: app/templates/main/admin_dashboard.html:6
+msgid "Admin Dashboard"
+msgstr ""
+
+#: app/admin/routes.py:44 app/templates/admin/layout.html:9
+#: app/templates/admin/users.html:4
+msgid "User Management"
+msgstr ""
+
+#: app/admin/routes.py:49
+msgid "Loans Overview"
+msgstr ""
+
+#: app/admin/routes.py:55 app/templates/admin/layout.html:11
+#: app/templates/admin/logs.html:4
+msgid "System Logs"
+msgstr ""
+
+#: app/admin/routes.py:67
+msgid "Settings updated successfully."
+msgstr ""
+
+#: app/admin/routes.py:72 app/templates/admin/layout.html:12
+#: app/templates/admin/settings.html:4
+msgid "Global Settings"
+msgstr ""
+
+#: app/auth/routes.py:21
+msgid "Invalid username or password"
+msgstr ""
+
+#: app/auth/routes.py:25
+msgid "This account has been deactivated."
+msgstr ""
+
+#: app/auth/routes.py:41 app/templates/auth/login.html:8
+#: app/templates/auth/login.html:22
+msgid "Sign In"
+msgstr ""
+
+#: app/auth/routes.py:46
+msgid "You have been logged out."
+msgstr ""
+
+#: app/auth/routes.py:56
+msgid ""
+"If an account with that email exists, password reset instructions have "
+"been sent."
+msgstr ""
+
+#: app/auth/routes.py:59
+msgid "Forgot Password"
+msgstr ""
+
+#: app/creditor/routes.py:42 app/templates/creditor/dashboard.html:4
+#: app/templates/main/creditor_dashboard.html:6
+msgid "Creditor Dashboard"
+msgstr ""
+
+#: app/creditor/routes.py:56
+msgid "Beneficiary added successfully."
+msgstr ""
+
+#: app/creditor/routes.py:60 app/templates/creditor/beneficiaries.html:5
+#: app/templates/creditor/layout.html:9
+msgid "Beneficiaries"
+msgstr ""
+
+#: app/creditor/routes.py:73
+msgid "Debtor added successfully."
+msgstr ""
+
+#: app/creditor/routes.py:77 app/templates/creditor/dashboard.html:10
+#: app/templates/creditor/debtors.html:5 app/templates/creditor/layout.html:10
+msgid "Debtors"
+msgstr ""
+
+#: app/creditor/routes.py:111
+msgid "Loan created successfully."
+msgstr ""
+
+#: app/creditor/routes.py:113
+msgid "All fields are required."
+msgstr ""
+
+#: app/creditor/routes.py:118 app/templates/creditor/dashboard.html:18
+#: app/templates/creditor/layout.html:11 app/templates/creditor/loans.html:5
+msgid "Loans"
+msgstr ""
+
+#: app/creditor/routes.py:132
+msgid "Payment amount must be greater than zero."
+msgstr ""
+
+#: app/creditor/routes.py:136
+msgid "Payment amount exceeds outstanding balance."
+msgstr ""
+
+#: app/creditor/routes.py:155
+msgid "Payment recorded successfully."
+msgstr ""
+
+#: app/creditor/routes.py:158
+msgid "An error occurred while recording the payment."
+msgstr ""
+
+#: app/creditor/routes.py:163 app/templates/creditor/loans.html:40
+msgid "Payments"
+msgstr ""
+
+#: app/debtor/routes.py:33 app/templates/debtor/dashboard.html:4
+#: app/templates/main/debtor_dashboard.html:6
+msgid "Debtor Dashboard"
+msgstr ""
+
+#: app/debtor/routes.py:42 app/templates/debtor/loan_details.html:6
+msgid "Loan Details"
+msgstr ""
+
+#: app/debtor/routes.py:48 app/templates/creditor/payments.html:36
+#: app/templates/debtor/loan_details.html:61
+msgid "Receipt"
+msgstr ""
+
+#: app/main/routes.py:10 app/templates/base.html:25
+msgid "Home"
+msgstr ""
+
+#: app/templates/base.html:9 app/templates/base.html:18
+msgid "Smart Financier"
+msgstr ""
+
+#: app/templates/base.html:29
+msgid "Login"
+msgstr ""
+
+#: app/templates/base.html:33
+msgid "Logout"
+msgstr ""
+
+#: app/templates/admin/settings.html:11 app/templates/base.html:42
+msgid "English"
+msgstr ""
+
+#: app/templates/base.html:43
+msgid "தமிழ் (Tamil)"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:10
+msgid "Total Users"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:18
+msgid "Total Loans"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:26
+msgid "Total Payments"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:37
+msgid "User Roles"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:45
+msgid "Monthly Payment Activity"
+msgstr ""
+
+#: app/templates/admin/dashboard.html:73
+msgid "Payment Volume ($)"
+msgstr ""
+
+#: app/templates/admin/layout.html:8 app/templates/creditor/layout.html:8
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/admin/layout.html:10
+msgid "Loans & Payments"
+msgstr ""
+
+#: app/templates/admin/loans.html:4
+msgid "Global Loans Overview"
+msgstr ""
+
+#: app/templates/admin/loans.html:11
+msgid "Loan ID"
+msgstr ""
+
+#: app/templates/admin/loans.html:12
+msgid "Creditor"
+msgstr ""
+
+#: app/templates/admin/loans.html:13 app/templates/creditor/loans.html:17
+msgid "Debtor"
+msgstr ""
+
+#: app/templates/admin/loans.html:14 app/templates/creditor/loans.html:18
+#: app/templates/debtor/dashboard.html:44
+msgid "Principal"
+msgstr ""
+
+#: app/templates/admin/loans.html:15 app/templates/admin/users.html:14
+#: app/templates/creditor/loans.html:20 app/templates/creditor/payments.html:24
+#: app/templates/debtor/loan_details.html:49
+msgid "Status"
+msgstr ""
+
+#: app/templates/admin/loans.html:16 app/templates/creditor/loans.html:21
+#: app/templates/creditor/loans.html:80 app/templates/debtor/dashboard.html:46
+msgid "Start Date"
+msgstr ""
+
+#: app/templates/admin/loans.html:28 app/templates/admin/users.html:26
+#: app/templates/creditor/loans.html:33
+msgid "Active"
+msgstr ""
+
+#: app/templates/admin/loans.html:30
+msgid "Closed"
+msgstr ""
+
+#: app/templates/admin/loans.html:38
+msgid "No loans found in the system."
+msgstr ""
+
+#: app/templates/admin/logs.html:7
+msgid "Error Logs (Last 50)"
+msgstr ""
+
+#: app/templates/admin/logs.html:14 app/templates/admin/logs.html:42
+msgid "Timestamp"
+msgstr ""
+
+#: app/templates/admin/logs.html:15
+msgid "Message"
+msgstr ""
+
+#: app/templates/admin/logs.html:25
+msgid "No error logs found."
+msgstr ""
+
+#: app/templates/admin/logs.html:35
+msgid "Audit Logs (Last 50)"
+msgstr ""
+
+#: app/templates/admin/logs.html:43
+msgid "User ID"
+msgstr ""
+
+#: app/templates/admin/logs.html:44
+msgid "Action"
+msgstr ""
+
+#: app/templates/admin/logs.html:45
+msgid "Table"
+msgstr ""
+
+#: app/templates/admin/logs.html:57
+msgid "No audit logs found."
+msgstr ""
+
+#: app/templates/admin/settings.html:9
+msgid "System Default Language"
+msgstr ""
+
+#: app/templates/admin/settings.html:11
+msgid "en"
+msgstr ""
+
+#: app/templates/admin/settings.html:12
+msgid "es"
+msgstr ""
+
+#: app/templates/admin/settings.html:12
+msgid "Spanish"
+msgstr ""
+
+#: app/templates/admin/settings.html:13
+msgid "fr"
+msgstr ""
+
+#: app/templates/admin/settings.html:13
+msgid "French"
+msgstr ""
+
+#: app/templates/admin/settings.html:16
+msgid "Save Settings"
+msgstr ""
+
+#: app/templates/admin/users.html:11 app/templates/auth/login.html:11
+msgid "Username"
+msgstr ""
+
+#: app/templates/admin/users.html:12
+msgid "Email"
+msgstr ""
+
+#: app/templates/admin/users.html:13
+msgid "Role"
+msgstr ""
+
+#: app/templates/admin/users.html:15
+msgid "Joined"
+msgstr ""
+
+#: app/templates/admin/users.html:28
+msgid "Inactive"
+msgstr ""
+
+#: app/templates/admin/users.html:34
+msgid "No users found."
+msgstr ""
+
+#: app/templates/auth/login.html:15
+msgid "Password"
+msgstr ""
+
+#: app/templates/auth/login.html:20
+msgid "Remember Me"
+msgstr ""
+
+#: app/templates/auth/login.html:25
+msgid "Forgot Password?"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:7
+#: app/templates/creditor/beneficiaries.html:48
+msgid "Add Beneficiary"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:17
+#: app/templates/creditor/debtors.html:17
+msgid "Name"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:18
+msgid "Bank"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:19
+msgid "Account No"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:20
+#: app/templates/creditor/beneficiaries.html:65
+msgid "IFSC Code"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:21
+#: app/templates/creditor/debtors.html:20
+msgid "Added On"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:34
+msgid "No beneficiaries found."
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:53
+msgid "Beneficiary Name"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:57
+msgid "Bank Name"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:61
+msgid "Account Number"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:70
+#: app/templates/creditor/debtors.html:64 app/templates/creditor/loans.html:89
+#: app/templates/creditor/payments.html:77
+msgid "Close"
+msgstr ""
+
+#: app/templates/creditor/beneficiaries.html:71
+msgid "Save Beneficiary"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:26
+#: app/templates/creditor/dashboard.html:74
+#: app/templates/creditor/dashboard.html:87
+msgid "Collected"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:34
+#: app/templates/creditor/dashboard.html:74
+#: app/templates/creditor/dashboard.html:88
+msgid "Outstanding"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:45
+msgid "Collection Rate"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:53
+msgid "Outstanding vs Collected"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:61
+msgid "Monthly Trends"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:85
+msgid "Finances"
+msgstr ""
+
+#: app/templates/creditor/dashboard.html:99
+msgid "Collections ($)"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:7 app/templates/creditor/debtors.html:46
+msgid "Add Debtor"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:18
+msgid "Phone"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:19
+#: app/templates/creditor/debtors.html:59
+msgid "Address"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:32
+msgid "No debtors found."
+msgstr ""
+
+#: app/templates/creditor/debtors.html:51
+msgid "Full Name"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:55
+msgid "Phone Number (WhatsApp)"
+msgstr ""
+
+#: app/templates/creditor/debtors.html:65
+msgid "Save Debtor"
+msgstr ""
+
+#: app/templates/creditor/loans.html:7 app/templates/creditor/loans.html:58
+#: app/templates/creditor/loans.html:90
+msgid "Create Loan"
+msgstr ""
+
+#: app/templates/creditor/loans.html:19
+msgid "Interest %"
+msgstr ""
+
+#: app/templates/creditor/loans.html:22 app/templates/creditor/payments.html:25
+#: app/templates/debtor/loan_details.html:50
+msgid "Actions"
+msgstr ""
+
+#: app/templates/creditor/loans.html:44
+msgid "No loans found."
+msgstr ""
+
+#: app/templates/creditor/loans.html:63
+msgid "Select Debtor"
+msgstr ""
+
+#: app/templates/creditor/loans.html:65
+msgid "-- Choose --"
+msgstr ""
+
+#: app/templates/creditor/loans.html:72
+msgid "Principal Amount"
+msgstr ""
+
+#: app/templates/creditor/loans.html:76
+msgid "Interest Rate (%)"
+msgstr ""
+
+#: app/templates/creditor/loans.html:84
+msgid "Due Date"
+msgstr ""
+
+#: app/templates/creditor/payments.html:5
+msgid "&larr; Back to Loans"
+msgstr ""
+
+#: app/templates/creditor/payments.html:9
+#: app/templates/creditor/payments.html:54
+#: app/templates/creditor/payments.html:78
+msgid "Record Payment"
+msgstr ""
+
+#: app/templates/creditor/payments.html:21
+#: app/templates/debtor/loan_details.html:46
+msgid "Date"
+msgstr ""
+
+#: app/templates/creditor/payments.html:22
+#: app/templates/creditor/payments.html:59
+#: app/templates/debtor/loan_details.html:47
+msgid "Amount"
+msgstr ""
+
+#: app/templates/creditor/payments.html:23
+#: app/templates/creditor/payments.html:67
+#: app/templates/debtor/loan_details.html:48
+msgid "Method"
+msgstr ""
+
+#: app/templates/creditor/payments.html:40
+msgid "No payments recorded for this loan yet."
+msgstr ""
+
+#: app/templates/creditor/payments.html:63
+msgid "Payment Date"
+msgstr ""
+
+#: app/templates/creditor/payments.html:69
+msgid "Cash"
+msgstr ""
+
+#: app/templates/creditor/payments.html:70
+msgid "Bank Transfer"
+msgstr ""
+
+#: app/templates/creditor/payments.html:71
+msgid "Cheque"
+msgstr ""
+
+#: app/templates/creditor/payments.html:72
+msgid "UPI/Digital"
+msgstr ""
+
+#: app/templates/creditor/payments.html:72
+msgid "UPI / Digital Wallet"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:10
+msgid "Total Principal"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:18
+#: app/templates/debtor/loan_details.html:70
+msgid "Total Paid"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:26
+msgid "Overall Progress"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:35
+msgid "My Active Loans"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:39
+msgid "Loan from"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:40
+msgid "View Details"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:45
+#: app/templates/debtor/loan_details.html:75
+msgid "Remaining Balance"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:54
+msgid "You currently have no active loans assigned to your profile."
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:64
+msgid "Paid"
+msgstr ""
+
+#: app/templates/debtor/dashboard.html:64
+msgid "Remaining"
+msgstr ""
+
+#: app/templates/debtor/layout.html:8
+msgid "My Dashboard"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:5
+msgid "&larr; Back to Dashboard"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:13
+msgid "Creditor Information"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:16
+msgid "Company:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:17
+msgid "Phone:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:18
+msgid "Address:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:25
+msgid "Loan Terms"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:28
+msgid "Principal:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:29
+msgid "Interest Rate:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:30
+msgid "Start Date:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:31
+msgid "Status:"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:39
+msgid "Payment History"
+msgstr ""
+
+#: app/templates/debtor/loan_details.html:65
+msgid "No payments have been recorded for this loan."
+msgstr ""
+
+#: app/templates/main/admin_dashboard.html:9
+msgid "System Overview"
+msgstr ""
+
+#: app/templates/main/admin_dashboard.html:10
+msgid ""
+"Welcome, Super Admin. From here you can manage all users, system "
+"settings, and view logs."
+msgstr ""
+
+#: app/templates/main/creditor_dashboard.html:9
+msgid "My Debtors"
+msgstr ""
+
+#: app/templates/main/creditor_dashboard.html:10
+msgid "Welcome back! Manage your loans, view payments, and add new debtors here."
+msgstr ""
+
+#: app/templates/main/debtor_dashboard.html:9
+msgid "My Loans"
+msgstr ""
+
+#: app/templates/main/debtor_dashboard.html:10
+msgid "Welcome back! View your loan balances, payment history, and profile here."
+msgstr ""
+
+#: app/templates/main/index.html:6
+msgid "Welcome to Smart Financier"
+msgstr ""
+
+#: app/templates/main/index.html:7
+msgid "Your modern finance management platform."
+msgstr ""
+
+#: app/templates/main/index.html:9
+msgid "Get Started"
+msgstr ""
+
+#: app/templates/shared/receipt.html:5
+msgid "Transaction Receipt"
+msgstr ""
+
+#: app/templates/shared/receipt.html:23
+msgid "Print to PDF"
+msgstr ""
+
+#: app/templates/shared/receipt.html:24
+msgid "Go Back"
+msgstr ""
+
+#: app/templates/shared/receipt.html:30
+msgid "Official Payment Receipt"
+msgstr ""
+
+#: app/templates/shared/receipt.html:35
+msgid "Billed To:"
+msgstr ""
+
+#: app/templates/shared/receipt.html:40
+msgid "Receipt No:"
+msgstr ""
+
+#: app/templates/shared/receipt.html:41
+msgid "Date:"
+msgstr ""
+
+#: app/templates/shared/receipt.html:46
+msgid "Amount Paid:"
+msgstr ""
+
+#: app/templates/shared/receipt.html:52
+msgid "Payment Method"
+msgstr ""
+
+#: app/templates/shared/receipt.html:56
+msgid "Loan Principal"
+msgstr ""
+
+#: app/templates/shared/receipt.html:60
+msgid "New Outstanding Balance"
+msgstr ""
+
+#: app/templates/shared/receipt.html:67
+msgid "Thank you for your payment."
+msgstr ""
+

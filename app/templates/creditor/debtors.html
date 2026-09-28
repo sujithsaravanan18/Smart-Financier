@@ -1,0 +1,72 @@
+{% extends "creditor/layout.html" %}
+
+{% block creditor_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ _('Debtors') }}</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDebtorModal">
+        {{ _('Add Debtor') }}
+    </button>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ _('Name') }}</th>
+                        <th>{{ _('Phone') }}</th>
+                        <th>{{ _('Address') }}</th>
+                        <th>{{ _('Added On') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in debtors %}
+                    <tr>
+                        <td>{{ d.full_name }}</td>
+                        <td>{{ d.phone_number }}</td>
+                        <td>{{ d.address }}</td>
+                        <td>{{ d.created_at.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4" class="text-center">{{ _('No debtors found.') }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addDebtorModal" tabindex="-1" aria-labelledby="addDebtorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="{{ url_for('creditor.debtors') }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addDebtorModalLabel">{{ _('Add Debtor') }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+                <label for="full_name" class="form-label">{{ _('Full Name') }}</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">{{ _('Phone Number (WhatsApp)') }}</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">{{ _('Address') }}</label>
+                <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            <button type="submit" class="btn btn-primary">{{ _('Save Debtor') }}</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

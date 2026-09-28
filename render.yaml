@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: smart-financier
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn run:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false # User must provide the Supabase PostgreSQL URL
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false

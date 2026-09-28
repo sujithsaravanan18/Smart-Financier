@@ -1,0 +1,85 @@
+{% extends "creditor/layout.html" %}
+
+{% block creditor_content %}
+<div class="mb-4">
+    <a href="{{ url_for('loans.creditor_manage') }}" class="btn btn-outline-secondary btn-sm mb-2">{{ _('&larr; Back to Loans') }}</a>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Payments for Loan to {{ loan.debtor.full_name }}</h2>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#recordPaymentModal">
+            {{ _('Record Payment') }}
+        </button>
+    </div>
+    <p class="text-muted">Principal: ${{ "%.2f"|format(loan.principal_amount) }} | Started: {{ loan.start_date.strftime('%Y-%m-%d') }}</p>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ _('Date') }}</th>
+                        <th>{{ _('Amount') }}</th>
+                        <th>{{ _('Method') }}</th>
+                        <th>{{ _('Status') }}</th>
+                        <th>{{ _('Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in payments %}
+                    <tr>
+                        <td>{{ p.payment_date.strftime('%Y-%m-%d') }}</td>
+                        <td>${{ "%.2f"|format(p.amount) }}</td>
+                        <td>{{ p.payment_method }}</td>
+                        <td><span class="badge bg-success">{{ p.status }}</span></td>
+                        <td>
+                            <a href="{{ url_for('payments.receipt', payment_id=p.id) }}" class="btn btn-sm btn-outline-info" target="_blank">{{ _('Receipt') }}</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4" class="text-center">{{ _('No payments recorded for this loan yet.') }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="recordPaymentModal" tabindex="-1" aria-labelledby="recordPaymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="{{ url_for('payments.manage', loan_id=loan.id) }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <div class="modal-header">
+            <h5 class="modal-title" id="recordPaymentModalLabel">{{ _('Record Payment') }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+                <label for="amount" class="form-label">{{ _('Amount') }}</label>
+                <input type="number" step="0.01" class="form-control" id="amount" name="amount" required>
+            </div>
+            <div class="mb-3">
+                <label for="payment_date" class="form-label">{{ _('Payment Date') }}</label>
+                <input type="date" class="form-control" id="payment_date" name="payment_date" required>
+            </div>
+            <div class="mb-3">
+                <label for="payment_method" class="form-label">{{ _('Method') }}</label>
+                <select class="form-select" id="payment_method" name="payment_method">
+                    <option value="{{ _('Cash') }}">{{ _('Cash') }}</option>
+                    <option value="{{ _('Bank Transfer') }}">{{ _('Bank Transfer') }}</option>
+                    <option value="{{ _('Cheque') }}">{{ _('Cheque') }}</option>
+                    <option value="{{ _('UPI/Digital') }}">{{ _('UPI / Digital Wallet') }}</option>
+                </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            <button type="submit" class="btn btn-primary">{{ _('Record Payment') }}</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

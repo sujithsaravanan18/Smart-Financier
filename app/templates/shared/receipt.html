@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ _('Transaction Receipt') }} - {{ payment.id[:8] }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #fff; color: #333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; }
+        .receipt-container { max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .receipt-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+        .receipt-details p { margin-bottom: 5px; }
+        .total-amount { font-size: 1.5em; font-weight: bold; margin-top: 20px; text-align: center; padding: 15px; background: #f8f9fa; border-radius: 8px; }
+        @media print {
+            body { padding: 0; background-color: #fff; }
+            .receipt-container { box-shadow: none; border: none; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mb-4 text-center no-print">
+            <button onclick="window.print()" class="btn btn-primary">{{ _('Print to PDF') }}</button>
+            <button onclick="window.history.back()" class="btn btn-outline-secondary">{{ _('Go Back') }}</button>
+        </div>
+        
+        <div class="receipt-container">
+            <div class="receipt-header">
+                <h2>{{ payment.loan.creditor.company_name }}</h2>
+                <p class="text-muted mb-0">{{ _('Official Payment Receipt') }}</p>
+            </div>
+            
+            <div class="row receipt-details">
+                <div class="col-sm-6">
+                    <strong>{{ _('Billed To:') }}</strong>
+                    <p>{{ payment.loan.debtor.full_name }}</p>
+                    <p>{{ payment.loan.debtor.phone_number }}</p>
+                </div>
+                <div class="col-sm-6 text-sm-end">
+                    <strong>{{ _('Receipt No:') }}</strong> <p>{{ payment.id[:8] | upper }}</p>
+                    <strong>{{ _('Date:') }}</strong> <p>{{ payment.payment_date.strftime('%B %d, %Y') }}</p>
+                </div>
+            </div>
+            
+            <div class="total-amount border-success text-success border">
+                {{ _('Amount Paid:') }} ${{ "%.2f"|format(payment.amount) }}
+            </div>
+            
+            <table class="table table-bordered mt-4">
+                <tbody>
+                    <tr>
+                        <th class="bg-light w-50">{{ _('Payment Method') }}</th>
+                        <td>{{ payment.payment_method }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light">{{ _('Loan Principal') }}</th>
+                        <td>${{ "%.2f"|format(payment.loan.principal_amount) }}</td>
+                    </tr>
+                    <tr>
+                        <th class="bg-light">{{ _('New Outstanding Balance') }}</th>
+                        <td>${{ "%.2f"|format(payment.loan.outstanding_balance) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="text-center mt-5 text-muted">
+                <small>{{ _('Thank you for your payment.') }}</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

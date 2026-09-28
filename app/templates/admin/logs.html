@@ -1,0 +1,64 @@
+{% extends "admin/layout.html" %}
+
+{% block admin_content %}
+<h2 class="mb-4">{{ _('System Logs') }}</h2>
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0">{{ _('Error Logs (Last 50)') }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>{{ _('Timestamp') }}</th>
+                        <th>{{ _('Message') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in error_logs %}
+                    <tr>
+                        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ log.error_message }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="2" class="text-center">{{ _('No error logs found.') }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+        <h5 class="mb-0">{{ _('Audit Logs (Last 50)') }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>{{ _('Timestamp') }}</th>
+                        <th>{{ _('User ID') }}</th>
+                        <th>{{ _('Action') }}</th>
+                        <th>{{ _('Table') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in audit_logs %}
+                    <tr>
+                        <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ log.user_id or 'System' }}</td>
+                        <td>{{ log.action }}</td>
+                        <td>{{ log.table_name }}</td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="4" class="text-center">{{ _('No audit logs found.') }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

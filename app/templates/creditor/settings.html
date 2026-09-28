@@ -1,0 +1,30 @@
+{% extends "creditor/layout.html" %}
+
+{% block creditor_content %}
+<h2 class="mb-4">{{ _('Creditor Settings') }}</h2>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ _('Company Profile') }}</h5>
+        <form action="" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="mb-3">
+                <label for="company_name" class="form-label">{{ _('Company Name') }}</label>
+                <input type="text" class="form-control" id="company_name" name="company_name" value="{{ creditor.company_name or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">{{ _('Phone Number') }}</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ creditor.phone_number or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">{{ _('Address') }}</label>
+                <textarea class="form-control" id="address" name="address" rows="3">{{ creditor.address or '' }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ _('Update Company Profile') }}</button>
+        </form>
+    </div>
+</div>
+
+{% include 'shared/profile_settings.html' %}
+
+{% endblock %}

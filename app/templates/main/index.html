@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">{{ _('Welcome to Smart Financier') }}</h1>
+        <p class="col-md-8 fs-4">{{ _('Your modern finance management platform.') }}</p>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg">{{ _('Get Started') }}</a>
+        {% else %}
+        <p class="fs-5">Hello, {{ current_user.username }}!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "debtor/layout.html" %}
+
+{% block debtor_content %}
+<h2 class="mb-4">{{ _('Debtor Dashboard') }}</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Total Principal') }}</h5>
+                <p class="card-text display-6">${{ "%.2f"|format(stats.total_principal) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Total Paid') }}</h5>
+                <p class="card-text display-6">${{ "%.2f"|format(stats.total_paid) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{ _('Overall Progress') }}</h5>
+                <div class="progress mt-3" style="height: 30px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: {{ stats.overall_progress }}%;" aria-valuenow="{{ stats.overall_progress }}" aria-valuemin="0" aria-valuemax="100">{{ "%.1f"|format(stats.overall_progress) }}%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-3">{{ _('My Active Loans') }}</h4>
+{% for data in loans %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">{{ _('Loan from') }} {{ data.loan.creditor.company_name }}</h5>
+        <a href="{{ url_for('loans.debtor_details', loan_id=data.loan.id) }}" class="btn btn-sm btn-outline-primary">{{ _('View Details') }}</a>
+    </div>
+    <div class="card-body row align-items-center">
+        <div class="col-md-8">
+            <p><strong>{{ _('Principal') }}:</strong> ${{ "%.2f"|format(data.loan.principal_amount) }}</p>
+            <p><strong>{{ _('Remaining Balance') }}:</strong> <span class="text-danger">${{ "%.2f"|format(data.balance) }}</span></p>
+            <p><strong>{{ _('Start Date') }}:</strong> {{ data.loan.start_date.strftime('%Y-%m-%d') }}</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <canvas id="chart-{{ data.loan.id[:8] }}" width="150" height="150"></canvas>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info">{{ _('You currently have no active loans assigned to your profile.') }}</div>
+{% endfor %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    {% for data in loans %}
+    new Chart(document.getElementById('chart-{{ data.loan.id[:8] }}').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: ['{{ _("Paid") }}', '{{ _("Remaining") }}'],
+            datasets: [{
+                data: [{{ data.paid }}, {{ data.balance }}],
+                backgroundColor: ['#28a745', '#dc3545']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+    {% endfor %}
+});
+</script>
+{% endblock %}

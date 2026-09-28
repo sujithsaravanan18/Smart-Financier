@@ -1,0 +1,24 @@
+{% extends "admin/layout.html" %}
+
+{% block admin_content %}
+<h2 class="mb-4">{{ _('Global Settings') }}</h2>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <form action="" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="mb-3">
+                <label for="default_language" class="form-label">{{ _('System Default Language') }}</label>
+                <select class="form-select" id="default_language" name="default_language">
+                    <option value="{{ _('en') }}" {% if current_lang == 'en' %}selected{% endif %}>{{ _('English') }}</option>
+                    <option value="{{ _('es') }}" {% if current_lang == 'es' %}selected{% endif %}>{{ _('Spanish') }}</option>
+                    <option value="{{ _('fr') }}" {% if current_lang == 'fr' %}selected{% endif %}>{{ _('French') }}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ _('Save Settings') }}</button>
+        </form>
+    </div>
+</div>
+
+{% include 'shared/profile_settings.html' %}
+
+{% endblock %}

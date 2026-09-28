@@ -1,0 +1,109 @@
+{% extends "creditor/layout.html" %}
+
+{% block creditor_content %}
+<h2 class="mb-4">{{ _('Creditor Dashboard') }}</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Debtors') }}</h5>
+                <p class="card-text display-6">{{ stats.total_debtors }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Loans') }}</h5>
+                <p class="card-text display-6">{{ stats.total_loans }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Collected') }}</h5>
+                <p class="card-text display-6">${{ "%.2f"|format(stats.total_collected) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Outstanding') }}</h5>
+                <p class="card-text display-6">${{ "%.2f"|format(stats.outstanding_balance) }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Collection Rate') }}</h5>
+                <canvas id="collectionChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Outstanding vs Collected') }}</h5>
+                <canvas id="balanceChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ _('Monthly Trends') }}</h5>
+                <canvas id="monthlyTrendsChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    new Chart(document.getElementById('collectionChart').getContext('2d'), {
+        type: 'pie',
+        data: {
+            labels: ['{{ _("Collected") }}', '{{ _("Outstanding") }}'],
+            datasets: [{
+                data: [{{ stats.total_collected }}, {{ stats.outstanding_balance }}],
+                backgroundColor: ['#28a745', '#ffc107']
+            }]
+        }
+    });
+    
+    new Chart(document.getElementById('balanceChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['{{ _("Finances") }}'],
+            datasets: [
+                { label: '{{ _("Collected") }}', data: [{{ stats.total_collected }}], backgroundColor: '#17a2b8' },
+                { label: '{{ _("Outstanding") }}', data: [{{ stats.outstanding_balance }}], backgroundColor: '#dc3545' }
+            ]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+
+    new Chart(document.getElementById('monthlyTrendsChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: {{ stats.month_labels | tojson }},
+            datasets: [{
+                label: '{{ _("Collections ($)") }}',
+                data: {{ stats.monthly_data | tojson }},
+                borderColor: '#0d6efd',
+                tension: 0.2
+            }]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
+});
+</script>
+{% endblock %}

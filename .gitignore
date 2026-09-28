@@ -1,0 +1,30 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+instance/
+.vscode/
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Pytest
+.pytest_cache/
+htmlcov/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Translations compiled
+*.mo
+
+# Export / scratch scripts (not needed for deployment)
+export_chat.py
+translate_po.py
+translate_templates.py
+update_urls.py

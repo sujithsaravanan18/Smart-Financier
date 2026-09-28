@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <!-- Creditor Sidebar -->
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="{{ url_for('dashboard.creditor_dashboard') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'dashboard.creditor_dashboard' %}active{% endif %}">{{ _('Dashboard') }}</a>
+            <a href="{{ url_for('creditor.beneficiaries') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'creditor.beneficiaries' %}active{% endif %}">{{ _('Beneficiaries') }}</a>
+            <a href="{{ url_for('creditor.debtors') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'creditor.debtors' %}active{% endif %}">{{ _('Debtors') }}</a>
+            <a href="{{ url_for('loans.creditor_manage') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'loans.creditor_manage' %}active{% endif %}">{{ _('Loans') }}</a>
+            <a href="{{ url_for('settings.creditor_settings') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'settings.creditor_settings' %}active{% endif %}">{{ _('Settings') }}</a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="col-md-9">
+        {% block creditor_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

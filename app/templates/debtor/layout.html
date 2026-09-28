@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <!-- Debtor Sidebar -->
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="{{ url_for('dashboard.debtor_dashboard') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'dashboard.debtor_dashboard' %}active{% endif %}">{{ _('My Dashboard') }}</a>
+            <a href="{{ url_for('settings.debtor_settings') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'settings.debtor_settings' %}active{% endif %}">{{ _('Settings') }}</a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="col-md-9">
+        {% block debtor_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

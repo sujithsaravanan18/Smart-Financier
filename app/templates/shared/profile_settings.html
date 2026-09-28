@@ -1,0 +1,29 @@
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ _('Profile Preferences') }}</h5>
+        <form action="{{ url_for('main.update_profile') }}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="mb-3">
+                <label for="profile_photo" class="form-label">{{ _('Profile Photo') }}</label>
+                <div class="d-flex align-items-center mb-2">
+                    {% if current_user.profile_photo_url %}
+                    <img src="{{ current_user.profile_photo_url }}" alt="{{ _('Profile') }}" class="rounded-circle me-3" style="width: 64px; height: 64px; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 64px; height: 64px;">
+                        {{ current_user.username[:1]|upper }}
+                    </div>
+                    {% endif %}
+                    <input class="form-control" type="file" id="profile_photo" name="profile_photo" accept="image/*">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="theme_color" class="form-label">{{ _('Theme') }}</label>
+                <select class="form-select" id="theme_color" name="theme_color">
+                    <option value="light" {% if current_user.theme_color == 'light' %}selected{% endif %}>{{ _('Light') }}</option>
+                    <option value="dark" {% if current_user.theme_color == 'dark' %}selected{% endif %}>{{ _('Dark') }}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ _('Update Profile') }}</button>
+        </form>
+    </div>
+</div>
